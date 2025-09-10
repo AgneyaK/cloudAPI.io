@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page Not Found</title>
+</head>
+<body>
+  <h1>404 - Page Not Found</h1>
+  <p>You tried to visit: <span id="path"></span></p>
+
+  <script>
+    // Show which page was missing
+    document.getElementById("path").textContent = window.location.pathname;
+
+    // FREE LOGGING - Replace URL below with your webhook.site link
+    fetch("https://webhook.site/your-unique-id", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        page: window.location.pathname,
+        time: new Date().toISOString(),
+        referrer: document.referrer,
+        userAgent: navigator.userAgent
+      })
+    });
+  </script>
+</body>
+</html>
